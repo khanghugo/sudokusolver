@@ -2,7 +2,7 @@
 it solves sudoku
 I created it without refering to any algorithms solving the sudoku so I am pretty proud of making this. Relatively easy to make as long as you try
 
->\grid = [
+>grid = [
 
 >[ 0 , 0 , 0 ,	0 , 1 , 9 , 	0 , 8 , 0 ],
 >[ 9 , 0 , 5 ,	0 , 0 , 0 , 	0 , 0 , 0 ],

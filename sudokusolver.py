@@ -1,5 +1,3 @@
-import math
-
 # grid template
 # grid = [	[ 0 , 0 , 0 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
 # 			[ 0 , 0 , 0 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
@@ -13,17 +11,49 @@ import math
 # 			[ 0 , 0 , 0 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
 # 			[ 0 , 0 , 0 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
 # ]
-grid = [	[ 0 , 0 , 0 ,	0 , 1 , 9 , 	0 , 8 , 0 ],
-			[ 9 , 0 , 5 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
-			[ 0 , 0 , 0 ,	4 , 0 , 0 , 	9 , 0 , 1 ],
+# grid = [	[ 0 , 0 , 0 ,	0 , 1 , 9 , 	0 , 8 , 0 ],
+# 			[ 9 , 0 , 5 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
+# 			[ 0 , 0 , 0 ,	4 , 0 , 0 , 	9 , 0 , 1 ],
 
-			[ 0 , 3 , 0 ,	0 , 0 , 0 , 	0 , 5 , 6 ],
-			[ 0 , 0 , 0 ,	0 , 0 , 0 , 	3 , 4 , 0 ],
-			[ 7 , 6 , 0 ,	8 , 0 , 0 , 	0 , 0 , 0 ],
+# 			[ 0 , 3 , 0 ,	0 , 0 , 0 , 	0 , 5 , 6 ],
+# 			[ 0 , 0 , 0 ,	0 , 0 , 0 , 	3 , 4 , 0 ],
+# 			[ 7 , 6 , 0 ,	8 , 0 , 0 , 	0 , 0 , 0 ],
 
-			[ 8 , 0 , 1 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
-			[ 2 , 0 , 0 ,	0 , 0 , 0 , 	0 , 0 , 4 ],
-			[ 0 , 4 , 0 ,	6 , 0 , 7 , 	0 , 0 , 0 ],
+# 			[ 8 , 0 , 1 ,	0 , 0 , 0 , 	0 , 0 , 0 ],
+# 			[ 2 , 0 , 0 ,	0 , 0 , 0 , 	0 , 0 , 4 ],
+# 			[ 0 , 4 , 0 ,	6 , 0 , 7 , 	0 , 0 , 0 ],
+# ]
+grid =[
+    [8,0,0,0,0,0,0,0,0],
+    [0,0,3,6,0,0,0,0,0],
+    [0,7,0,0,9,0,2,0,0],
+    [0,5,0,0,0,7,0,0,0],
+    [0,0,0,0,4,5,7,0,0],
+    [0,0,0,1,0,0,0,3,0],
+    [0,0,1,0,0,0,0,6,8],
+    [0,0,8,5,0,0,0,1,0],
+    [0,9,0,0,0,0,4,0,0]]
+grid = [
+    [7, 8, 0, 4, 0, 0, 1, 2, 0],
+    [6, 0, 0, 0, 7, 5, 0, 0, 9],
+    [0, 0, 0, 6, 0, 1, 0, 7, 8],
+    [0, 0, 7, 0, 4, 0, 2, 6, 0],
+    [0, 0, 1, 0, 5, 0, 9, 3, 0],
+    [9, 0, 4, 0, 6, 0, 0, 0, 5],
+    [0, 7, 0, 3, 0, 0, 0, 1, 2],
+    [1, 2, 0, 0, 0, 7, 4, 0, 0],
+    [0, 4, 9, 2, 0, 6, 0, 0, 7]
+]
+grid = [
+    [8, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 3, 6, 0, 0, 0, 0, 0],
+    [0, 7, 0, 0, 9, 0, 2, 0, 0],
+    [0, 5, 0, 0, 0, 7, 0, 0, 0],
+    [0, 0, 0, 0, 4, 5, 7, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0, 3, 0],
+    [0, 0, 1, 0, 0, 0, 0, 6, 8],
+    [0, 0, 8, 5, 0, 0, 0, 1, 0],
+    [0, 9, 0, 0, 0, 0, 4, 0, 0]
 ]
 # error checking grid. it will collects all the numbers that was chosen and moved it here so the same number wont repeat. however, a cell would resets if the pointer moves back
 # to make a different combination
@@ -70,7 +100,7 @@ def ccol(row, col):
 
 # from the position of row and col, this will determine the block it is in
 def findBlock(row, col):
-	block = ( math.floor(row / 3) ) * 3 + math.floor(col / 3)
+	block = ( row // 3 ) * 3 + col // 3
 	return block
 # im using a list so this makes everything looks neater
 def printarray(listA):
@@ -147,7 +177,6 @@ while True:
 		break
 	# defining stuffs
 	mblock = findBlock(mrow, mcol)
-	indexStart = 0
 	#find the numbers missing in each group, n = need
 	nrow = setdiff(grid[mrow])
 	ncol = setdiff(ccol(mrow, mcol))
@@ -183,6 +212,7 @@ while True:
 
 	#since all the number in the grid changes and the gridBlock has no affliiations, it needs to be udpated on its own.
 	upblock()
+	#printarray(zgrid)
 
 # glory
 printarray(grid)
